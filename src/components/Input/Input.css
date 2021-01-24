@@ -1,0 +1,32 @@
+.form-control{
+    width: 90%;
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.form-control label{
+    font-weight: 500;
+   
+}
+.form-control input,select{
+    width: 100%;
+    box-sizing: border-box;
+    padding:7px;
+    margin-top: 5px;
+     border:2px solid	#DCDCDC;
+    font-weight:600;
+    border-radius: 3px;
+    
+}
+.form-control span{
+    color:red;
+}
+
+.form-control input:focus,select:focus{
+    outline:1px solid	#DCDCDC;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -1,0 +1,28 @@
+.form-content{
+    background-color:	#F5F5F5;
+    width: 500px;
+    margin-left: auto;   
+    margin-right: auto;
+    padding-bottom: 20px;
+    border: 15px solid 	#F0F0F0;
+    margin-top: 20px;
+}
+h3{
+    text-align: left;
+    margin-left: 20px;
+    margin-bottom: -10px;
+    padding-top: 5px;
+}
+button[type="submit"]{
+    color: white;
+   margin-top: 15px;
+   padding: 10px;
+   background-color: 	#808080;
+   border: none;
+   margin-left: 20px;
+}
+#showTable{
+position: absolute;
+top:200px;
+right: 200px;
+}
