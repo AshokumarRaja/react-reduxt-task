@@ -1,6 +1,7 @@
 import React from 'react'
 import { Field } from 'react-final-form'
 import { connect } from 'react-redux'
+import {getFormState} from '../reducers/formReducer'
 const Select = (props) => {
     const { name, options, label, validate, values } = props;
     return (
@@ -23,9 +24,5 @@ const Select = (props) => {
         </Field>
     )
 }
-const mapStateToProps = state => ({
-    values: state
-
-})
-export default connect(mapStateToProps, undefined)(Select)
+export default connect((state) => ({ values: getFormState(state) }))(Select)
 

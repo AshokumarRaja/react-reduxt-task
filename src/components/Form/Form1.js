@@ -1,32 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Form } from 'react-final-form'
 import Input from '../Input/Input'
 import Select from '../Select'
-import { FormSpy } from "react-final-form";
 import { Country } from '../../constants/CoutryConstants'
 import { States } from '../../constants/StateConstants';
-import { savedata } from '../../Action/formAction'
-import { store } from '../../reducers/store'
+import FormStateToRedux from '../../FormStateToRedux'
 import './Form1.css'
 const Form1 = () => {
-    var result = [];
+    const [value, setValue] = useState([]);
     const onSubmit = values => {
-        Object.keys(values).map((key) => result.push([key, values[key]])); // object are convert to Array
-        const ShowTable = document.getElementById("showTable");
-        ShowTable.innerHTML = " ";
-        var result1 = " ";
-        result.map((res) => {
-            return result1 += "<p>" + res[0] + " : " + res[1] + "</p>"; //Array values stored in result
-        })
-        ShowTable.innerHTML = result1 // values are showed in ShowTable
+        Object.keys(values).map((key) => setValue(prevstate => [...prevstate, [key, values[key]]]));
     };
-    const required = value => (value ? undefined : 'Field Is Required')
+    const required = value => (value ? undefined : 'Field Is Required');
+    const minLength = min => value =>isNaN(value) || value.length > min ? 'Enter Only 10 Numbers':value.length<min ?'Enter atleast 10 Numbers':undefined ;
+    const composeValidators = (...validators) => value =>validators.reduce((error, validator) => error || validator(value), undefined)
     return (
         <>
             <div className="form-content">
                 <Form onSubmit={onSubmit} >
-                    {({ handleSubmit}) => (
+                    {({ handleSubmit }) => (
                         <form onSubmit={handleSubmit}>
+                             <FormStateToRedux  />
                             <h3>Shipping Address</h3>
                             <Input type="text" name="Name" placeholder="Name" label="Name" validate={required} />
                             <Input type="text" name="Address" placeholder="Address" label="Address" validate={required} />
@@ -34,17 +28,20 @@ const Form1 = () => {
                             <Select name="Country" options={Country} label="Country" validate={required} />
                             <Select name="States" options={States} label="States" validate={required} />
                             <Input type="number" name="PinCode" placeholder="PinCode" label="PinCode" validate={required} />
-                            <Input type="Number" name="Phone" label="Phone" placeholder="Phone" validate={required} />
+                            <Input type="Number" name="Phone" label="Phone" placeholder="Phone"  validate={composeValidators(required, minLength(10))} />
                             <button type="submit" >Ship To This Address</button>
-                            <FormSpy  onChange={(state) => store.dispatch(savedata(state.values))} />
-                             {/* dispatch on everytime form value changes*/} 
+                            
                         </form>
                     )}
                 </Form>
             </div>
-            <div id="showTable"></div>
+            <div id="showTable">
+                {value.map((val) => {
+                    return <p key={val}>{`${val[0]} : ${val[1]} `}</p>
+                })}
+            </div>
         </>
     )
 }
 
-export default Form1
+export default Form1;

@@ -2,8 +2,10 @@ import React from 'react'
 import './Input.css';
 import { Field } from 'react-final-form'
 import { connect } from 'react-redux'
+import {getFormState} from '../../reducers/formReducer'
 const Input = (props) => {
     const { label, name, validate, values, ...rest } = props;
+ 
     return (
         <Field className="form-control" name={name} label={label} {...rest} validate={validate} >
             {({ input, meta, placeholder, className }) => (
@@ -16,8 +18,4 @@ const Input = (props) => {
         </Field>
     )
 }
-const mapStateToProps = state => ({
-    values: state
-
-})
-export default connect(mapStateToProps, undefined)(Input)
+export default connect((state) => ({ values: getFormState(state) }))(Input)
