@@ -2,7 +2,9 @@
     width: 90%;
     text-align: left;
     margin-left: 20px;
-    margin-top: 20px;
+    margin-top: 15px;
+    padding-bottom: 7px;
+    box-sizing: border-box;
 }
 
 .form-control label {
@@ -37,4 +39,5 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 
 .active {
     background-color: paleturquoise;
+ 
 }

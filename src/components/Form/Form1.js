@@ -4,10 +4,12 @@ import Input from '../Input/Input'
 import Select from '../Select'
 import { Country } from '../../constants/CoutryConstants'
 import { States } from '../../constants/StateConstants';
-import FormStateToRedux from '../../FormStateToRedux'
+import FormState from '../../formState';
+import createDecorator from 'final-form-focus'
 import './Form1.css'
 const Form1 = () => {
     const [value, setValue] = useState([]);
+    const focusOnError=createDecorator();
     const onSubmit = values => {
         Object.keys(values).map((key) => setValue(prevstate => [...prevstate, [key, values[key]]]));
     };
@@ -17,10 +19,10 @@ const Form1 = () => {
     return (
         <>
             <div className="form-content">
-                <Form onSubmit={onSubmit} >
+                <Form onSubmit={onSubmit} decorators={[focusOnError]}>
                     {({ handleSubmit }) => (
-                        <form onSubmit={handleSubmit}>
-                            <FormStateToRedux />
+                        <form onSubmit={handleSubmit} >
+                            <FormState />
                             <h3>Shipping Address</h3>
                             <Input type="text" name="Name" placeholder="Name" label="Name" validate={required} />
                             <Input type="text" name="Address" placeholder="Address" label="Address" validate={required} />
