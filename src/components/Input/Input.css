@@ -11,7 +11,7 @@
     margin-left: 10px;
 }
 
-.form-control input[type="text"],input[type="number"],select {
+.form-control input[type="text"], input[type="number"], select {
     width: 95%;
     box-sizing: border-box;
     padding: 7px;
@@ -21,7 +21,8 @@
     font-weight: 600;
     border-radius: 3px;
 }
-.form-control input[type="checkbox"]{
+
+.form-control input[type="checkbox"] {
     margin-left: 13px;
 }
 
@@ -41,5 +42,4 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 
 .active {
     background-color: paleturquoise;
- 
 }

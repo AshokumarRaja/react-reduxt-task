@@ -43,7 +43,6 @@ const Form1 = () => {
                     </form>
                 )}
             </Form>
-
             <div id="showTable">
                 {value.map((val) => {
                     return <p key={val}>{`${val[0]} : ${val[1]} `}</p>

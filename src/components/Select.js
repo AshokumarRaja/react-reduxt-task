@@ -8,9 +8,9 @@ const Select = (props) => {
     return (
         <Field name={name} options={options} className="form-control" label={label} validate={validate}>
             { ({ input, meta, options, className }) => {
-               
+
                 return (
-                    <div className={`${className} ${meta.active ? 'active':''}`} >
+                    <div className={`${className} ${meta.active ? 'active' : ''}`} >
                         <label>{label}</label>
                         <select name={name} onChange={(value) => input.onChange(value)} {...input} >
                             {options.map((x) => {
