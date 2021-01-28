@@ -3,6 +3,14 @@ import { Field } from 'react-final-form'
 import { connect } from 'react-redux'
 import { getFormState } from '../reducers/formReducer'
 import './Input/Input.css'
+/**
+ * @param name - input name ,props received by default
+ * @param label -label ,props received by default
+ * @param validate - input validation  ,props received by default
+ * @param values -received from redux
+ * @param rest -received input values ,props received by default
+ * @param options -Array of Country and States
+ */
 const Select = (props) => {
     const { name, options, label, validate, values, } = props;
     return (

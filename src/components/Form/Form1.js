@@ -11,6 +11,12 @@ import createDecorator from 'final-form-focus'
 import CheckBox from '../CheckBox'
 import { FORM_ERROR } from 'final-form'
 import './Form1.css'
+/**
+ * @param value - Array of Form Values stored
+ * @param values - returned form values
+ * @param focusonError - highlight first error
+ * @returns {FORM_ERROR} -returns response form submission
+ */
 const Form1 = () => {
     const [value, setValue] = useState([]);
     const focusonError = createDecorator();

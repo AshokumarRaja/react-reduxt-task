@@ -1,4 +1,6 @@
 import { SAVEDATA } from '../Action/formAction'
+
+// State initialValue
 const initialState = {
     Name: '',
     Address: "",
@@ -8,6 +10,8 @@ const initialState = {
     States: '',
     PinCode: '',
 }
+
+//Reducer
 const formReducer = (state = initialState, action) => {
     switch (action.type) {
         case SAVEDATA:
@@ -25,5 +29,6 @@ const formReducer = (state = initialState, action) => {
             return state;
     }
 }
+
 export const getFormState = (state) => state || {}
 export default formReducer;
