@@ -2,7 +2,6 @@
     width: 90%;
     text-align: left;
     margin-left: 20px;
-    margin-top: 15px;
     padding-bottom: 7px;
     box-sizing: border-box;
 }
@@ -12,7 +11,7 @@
     margin-left: 10px;
 }
 
-.form-control input, select {
+.form-control input[type="text"],input[type="number"],select {
     width: 95%;
     box-sizing: border-box;
     padding: 7px;
@@ -21,6 +20,9 @@
     border: 2px solid #DCDCDC;
     font-weight: 600;
     border-radius: 3px;
+}
+.form-control input[type="checkbox"]{
+    margin-left: 13px;
 }
 
 .form-control span {

@@ -5,24 +5,29 @@ import Select from '../Select'
 import { Country } from '../../constants/CoutryConstants'
 import { States } from '../../constants/StateConstants';
 import FormState from '../../formState';
+import { required, minLength, composeValidators } from '../../validation/formValidation';
+import { initialValues } from '../../constants/InitalValuesConstant'
 import createDecorator from 'final-form-focus'
+import CheckBox from '../CheckBox'
+import { FORM_ERROR } from 'final-form'
 import './Form1.css'
 const Form1 = () => {
     const [value, setValue] = useState([]);
-    const focusOnError=createDecorator();
+    const focusonError = createDecorator();
     const onSubmit = values => {
+        if (values.States == 'kerala') {
+            return { [FORM_ERROR]: 'Shipping Not Available in Kerala' }
+        }
         Object.keys(values).map((key) => setValue(prevstate => [...prevstate, [key, values[key]]]));
     };
-    const required = value => (value ? undefined : 'Field Is Required');
-    const minLength = min => value => isNaN(value) || value.length > min ? 'Enter Only 10 Numbers' : value.length < min ? 'Enter atleast 10 Numbers' : undefined;
-    const composeValidators = (...validators) => value => validators.reduce((error, validator) => error || validator(value), undefined)
     return (
         <>
-            <div className="form-content">
-                <Form onSubmit={onSubmit} decorators={[focusOnError]}>
-                    {({ handleSubmit }) => (
-                        <form onSubmit={handleSubmit} >
-                            <FormState />
+            <Form onSubmit={onSubmit} decorators={[focusonError]} initialValues={initialValues}>
+                {({ handleSubmit, submitting, pristine, form, values, submitError }) => (
+                    <form onSubmit={handleSubmit}>
+                        <FormState />
+                        {submitError && <div className="error">{submitError}</div>}
+                        <div className="form-content">
                             <h3>Shipping Address</h3>
                             <Input type="text" name="Name" placeholder="Name" label="Name" validate={required} />
                             <Input type="text" name="Address" placeholder="Address" label="Address" validate={required} />
@@ -31,12 +36,14 @@ const Form1 = () => {
                             <Select name="States" options={States} label="States" validate={required} />
                             <Input type="number" name="PinCode" placeholder="PinCode" label="PinCode" validate={required} />
                             <Input type="Number" name="Phone" label="Phone" placeholder="Phone" validate={composeValidators(required, minLength(10))} />
-                            <button type="submit" >Ship To This Address</button>
+                            <CheckBox type="checkbox" name="Checkbox" label="Check if Shipping and Billing address are diiferent" />
+                            <button type="submit" disabled={submitting || pristine} >Ship To This Address</button>
+                            <button type="reset" disabled={submitting || pristine} onClick={form.reset}>Reset</button>
+                        </div>
+                    </form>
+                )}
+            </Form>
 
-                        </form>
-                    )}
-                </Form>
-            </div>
             <div id="showTable">
                 {value.map((val) => {
                     return <p key={val}>{`${val[0]} : ${val[1]} `}</p>
@@ -45,5 +52,4 @@ const Form1 = () => {
         </>
     )
 }
-
 export default Form1;
