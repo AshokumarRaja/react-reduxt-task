@@ -10,10 +10,10 @@ import { getFormState } from '../../reducers/formReducer'
  * @param values -received from redux
  * @param rest -received input values ,props received by default
  */
-const Input = (props) => {
-    const { label, name, validate, values, ...rest } = props;
+export const Input = (props) => {
+    const { label, name, validate, values,parse,...rest } = props;
     return (
-        <Field className="form-control" name={name} label={label} {...rest} validate={validate} >
+        <Field className="form-control" name={name} label={label} validate={validate}  parse={parse} {...rest}>
             {({ input, meta, placeholder, className }) => (
                 <div className={`${className} ${meta.active ? 'active' : ''}`}>
                     <label>{label}</label>

@@ -1,7 +1,5 @@
 import React from 'react'
 import { Field } from 'react-final-form'
-import { connect } from 'react-redux'
-import { getFormState } from '../reducers/formReducer'
 import './Input/Input.css'
 /**
  * @param name - input name ,props received by default
@@ -12,11 +10,10 @@ import './Input/Input.css'
  * @param options -Array of Country and States
  */
 const Select = (props) => {
-    const { name, options, label, validate, values, } = props;
+    const { name, options, label, validate } = props;
     return (
         <Field name={name} options={options} className="form-control" label={label} validate={validate}>
             { ({ input, meta, options, className }) => {
-
                 return (
                     <div className={`${className} ${meta.active ? 'active' : ''}`} >
                         <label>{label}</label>
@@ -34,5 +31,5 @@ const Select = (props) => {
         </Field>
     )
 }
-export default connect((state) => ({ values: getFormState(state) }))(Select)
+export default Select;
 
