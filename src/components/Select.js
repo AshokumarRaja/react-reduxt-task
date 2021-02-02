@@ -10,10 +10,11 @@ import './Input/Input.css'
  * @param options -Array of Country and States
  */
 const Select = (props) => {
-    const { name, options, label, validate } = props;
+    const { name, options, label, validate} = props;
     return (
         <Field name={name} options={options} className="form-control" label={label} validate={validate}>
             { ({ input, meta, options, className }) => {
+
                 return (
                     <div className={`${className} ${meta.active ? 'active' : ''}`} >
                         <label>{label}</label>

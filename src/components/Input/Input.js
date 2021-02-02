@@ -1,6 +1,6 @@
 import React from 'react'
 import './Input.css';
-import { Field } from 'react-final-form'
+import { Field, Form } from 'react-final-form'
 import { connect } from 'react-redux'
 import { getFormState } from '../../reducers/formReducer'
 /**
@@ -11,9 +11,9 @@ import { getFormState } from '../../reducers/formReducer'
  * @param rest -received input values ,props received by default
  */
 export const Input = (props) => {
-    const { label, name, validate, values,parse,...rest } = props;
+    const { label, name, validate, values, parse, ...rest } = props;
     return (
-        <Field className="form-control" name={name} label={label} validate={validate}  parse={parse} {...rest}>
+        <Field className="form-control" name={name} label={label} validate={validate} parse={parse} {...rest}>
             {({ input, meta, placeholder, className }) => (
                 <div className={`${className} ${meta.active ? 'active' : ''}`}>
                     <label>{label}</label>
@@ -24,4 +24,4 @@ export const Input = (props) => {
         </Field>
     )
 }
-export default connect((state) => ({ values: getFormState(state) }))(Input)
+export default Input;

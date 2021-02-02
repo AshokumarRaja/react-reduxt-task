@@ -5,7 +5,7 @@ const Button = (props) => {
     return (
         <>
             { loading ? <div className="loader"><div className="loading"></div></div> :
-                <button type="submit" disabled={submitting || pristine} >Ship To This Address</button>
+                <button type="submit" disabled={submitting || pristine} loading={loading}>Ship To This Address</button>
             }
         </>
     )
